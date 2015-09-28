@@ -1,0 +1,28 @@
+<h1>Welcome! </h1>
+<h2>Please choose a flight:</h2>
+
+<%= form_tag flights_path, method: :get do %>
+    <%= select_tag :from_airport_id, options_from_collection_for_select(Airport.all, :id, :name, params[:from_airport_id])%>
+    <%= select_tag :to_airport_id, options_from_collection_for_select(Airport.all, :id, :name, params[:to_airport_id])%>
+    <%= select_tag :date, options_from_collection_for_select(Flight.all, :date, :event_date_formatted, params[:date])%>
+    <%= select_tag :num_tickets, options_for_select(1..4, params[:num_tickets])  %>
+<%= submit_tag "Search" %>
+
+<%end%>
+
+<% if @flights %>
+<ul>
+    <%= form_tag new_booking_path, method: :get do %>
+    
+    <%@flights.each do |f| %>
+    <%=radio_button_tag :id, f.id%>
+    <%=label_tag f.id, "#{f.from_airport.name} to #{f.to_airport.name}  |  #{f.date.to_formatted_s(:long)}" %></br>
+    <%=hidden_field_tag :num_tickets, @num_tickets %>
+    <%end%>
+    
+    <%= submit_tag "Choose flight" %>
+    <%end%>
+</ul>
+
+<%end%>
+
