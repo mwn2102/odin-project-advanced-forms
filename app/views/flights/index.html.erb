@@ -4,7 +4,7 @@
 <%= form_tag flights_path, method: :get do %>
     <%= select_tag :from_airport_id, options_from_collection_for_select(Airport.all, :id, :name, params[:from_airport_id])%>
     <%= select_tag :to_airport_id, options_from_collection_for_select(Airport.all, :id, :name, params[:to_airport_id])%>
-    <%= select_tag :date, options_from_collection_for_select(Flight.all, :date, :event_date_formatted, params[:date])%>
+    <%= select_tag :date, options_for_select(@dates, params[:date])  %>
     <%= select_tag :num_tickets, options_for_select(1..4, params[:num_tickets])  %>
 <%= submit_tag "Search" %>
 

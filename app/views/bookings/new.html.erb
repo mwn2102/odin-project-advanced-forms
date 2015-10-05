@@ -11,6 +11,8 @@
 <%=f.fields_for :passengers do |q| %>
 <%=q.label :name %>
 <%=q.text_field :name %>
+<%=q.label :email %>
+<%=q.text_field :email %>
 <%end%>
 
 <%=f.submit "Book Flight" %>

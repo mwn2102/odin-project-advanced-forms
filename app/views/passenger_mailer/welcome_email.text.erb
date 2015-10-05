@@ -1,0 +1,8 @@
+Flight Confirmation 
+
+<% @passengers.each do |p| %>
+Passenger: <%=p.name%>
+<%end%>
+<%=@flight.from_airport.name%> => <%=@flight.to_airport.name%>
+<%=@flight.date%>
+Duration:<%=@flight.duration%> hours

@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params)
         if @booking.save
             # @booking.update_attributes(flight_id: params[:booking][:flight_id])
+            PassengerMailer.welcome_email(@booking).deliver_now
             redirect_to @booking
         end
     end
@@ -36,7 +37,7 @@ class BookingsController < ApplicationController
     private
     
     def booking_params
-        params.require(:booking).permit(:flight_id, :passengers_attributes => [:id, :name]) #don't need :flight_id?
+        params.require(:booking).permit(:flight_id, :passengers_attributes => [:id, :name, :email]) #don't need :flight_id?
         #simple error - correct pluralization of passengers_attributes
     end
 end

@@ -1,0 +1,8 @@
+<h1>Flight Confirmation </h1>
+
+<% @passengers.each do |p| %>
+Passenger: <%=p.name%>
+<%end%>
+<p><%=@flight.from_airport.name%> => <%=@flight.to_airport.name%></p>
+<p><%=@flight.date%></p>
+<p>Duration:<%=@flight.duration%> hours</p>

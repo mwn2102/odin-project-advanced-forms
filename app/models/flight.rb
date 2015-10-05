@@ -8,4 +8,9 @@ class Flight < ActiveRecord::Base
       date.strftime("%m/%d/%Y")  
     end
     
+    def self.unique_dates
+      f = Flight.all.pluck(:date)
+      f.map{ |d| d.strftime("%m/%d/%Y")}.uniq
+    end
+    
 end
